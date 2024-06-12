@@ -15,6 +15,17 @@ void displayMaze(char** maze, int height, int width) {
     }
 }
 
+// Finds the starting postion of the maze this allows us to start moving down the maze this is down in O(n)
+pair<int, int> findStartPosition(char** maze, int rows, int cols) {
+    for (int i = 0; i < rows; ++i) {
+        for (int j = 0; j < cols; ++j) {
+            if (maze[i][j] == 'S') {
+                return make_pair(i, j);
+            }
+        }
+    }
+}
+
 int main() {
     // set vars
     int mazeSelect;
@@ -41,7 +52,8 @@ int main() {
         mazeWidth = 15;
         maze = maze_15x15();
     }
-    
+     
+    Sleep(4000);
     // start displaying maze
     std::cout << "\033[2J\033[1;1H";
     displayMaze(maze, mazeHeight, mazeWidth);
